@@ -58,3 +58,40 @@ addls = rdds.map(lambda x : x + "Analytics")
 print()
 print("=====Addrdd list for String=====")
 print(addls.collect())
+
+
+
+
+Output
+===Started===
+2
+4
+Zeyobron
+ZeyobronAnalytics
+
+=====Raw Python list=====
+[1, 2, 3, 4]
+
+=====RDD list=====
+[1, 2, 3, 4]
+
+=====Addrdd lambda list=====
+[3, 4, 5, 6]
+
+=====Mulrdd lambda list=====
+[7, 14, 21, 28]
+
+=====Subrdd lambda list=====
+[-4, -3, -2, -1]
+
+=====Divrdd lambda list=====
+[0.1, 0.2, 0.3, 0.4]
+
+=====Raw data=====
+['zeyobron', 'zeyo']
+
+=====RDD data for String=====
+['zeyobron', 'zeyo']
+
+=====Addrdd list for String=====
+['zeyobronAnalytics', 'zeyoAnalytics']
