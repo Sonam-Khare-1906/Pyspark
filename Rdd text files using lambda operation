@@ -1,0 +1,60 @@
+print("===Started===")
+
+a = 2
+print(a)
+
+b = a + 2
+print(b)
+
+c = "Zeyobron"
+print(c)
+
+d = c + "Analytics"
+print(d)
+
+lis = [1,2,3,4]
+print()
+print("=====Raw Python list=====")
+print(lis)
+
+#convert above list to Rdd using the method for parallelize---it is textfile method---Above list is a raw python data
+rdd = sc.parallelize(lis)
+print()
+print("=====RDD list=====")
+print(rdd.collect())
+
+#lambda can help for processing the  iterating the list of Rdd
+addrdd = rdd.map(lambda x : x + 2)
+print()
+print("=====Addrdd lambda list=====")
+print(addrdd.collect())
+
+mulrdd = rdd.map(lambda x : x * 7)
+print()
+print("=====Mulrdd lambda list=====")
+print(mulrdd.collect())
+
+subrdd = rdd.map(lambda x : x - 5)
+print()
+print("=====Subrdd lambda list=====")
+print(subrdd .collect())
+
+divrdd = rdd.map(lambda x : x / 10)
+print()
+print("=====Divrdd lambda list=====")
+print(divrdd .collect())
+
+ls = ["zeyobron" , "zeyo"]
+print()
+print("=====Raw data=====")
+print(ls)
+
+rdds = sc.parallelize(ls)
+print()
+print("=====RDD data for String=====")
+print(rdds.collect())
+
+addls = rdds.map(lambda x : x + "Analytics")
+print()
+print("=====Addrdd list for String=====")
+print(addls.collect())
