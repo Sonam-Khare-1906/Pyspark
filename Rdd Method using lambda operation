@@ -14,51 +14,50 @@ print(d)
 
 lis = [1,2,3,4]
 print()
-print("=====Raw Python list=====")
+print("=============================Raw Python list======================")
 print(lis)
 
-#convert above list to Rdd using the method for parallelize---it is textfile method---Above list is a raw python data
+########################################convert above list to Rdd using the method for parallelize---it is textfile method---Above list is a raw python data#######################################
 rdd = sc.parallelize(lis)
 print()
-print("=====RDD list=====")
+print("============================RDD list=============================")
 print(rdd.collect())
 
-#lambda can help for processing the  iterating the list of Rdd
+########################################lambda can help for processing the  iterating the list of Rdd#######################################
 addrdd = rdd.map(lambda x : x + 2)
 print()
-print("=====Addrdd lambda list=====")
+print("============================Addrdd lambda list=====================")
 print(addrdd.collect())
 
 mulrdd = rdd.map(lambda x : x * 7)
 print()
-print("=====Mulrdd lambda list=====")
+print("=============================Mulrdd lambda list=====================")
 print(mulrdd.collect())
 
 subrdd = rdd.map(lambda x : x - 5)
 print()
-print("=====Subrdd lambda list=====")
-print(subrdd .collect())
+print("==============================Subrdd lambda list=====================")
+print(subrdd.collect())
 
 divrdd = rdd.map(lambda x : x / 10)
 print()
-print("=====Divrdd lambda list=====")
-print(divrdd .collect())
+print("==============================Divrdd lambda list=======================")
+print(divrdd.collect())
 
 ls = ["zeyobron" , "zeyo"]
 print()
-print("=====Raw data=====")
+print("=============================Raw data===================================")
 print(ls)
 
 rdds = sc.parallelize(ls)
 print()
-print("=====RDD data for String=====")
+print("==============================RDD data for String=======================")
 print(rdds.collect())
 
 addls = rdds.map(lambda x : x + "Analytics")
 print()
-print("=====Addrdd list for String=====")
+print("=============================Addrdd list for String======================")
 print(addls.collect())
-
 
 
 
@@ -69,29 +68,29 @@ Output
 Zeyobron
 ZeyobronAnalytics
 
-=====Raw Python list=====
+=============================Raw Python list======================
 [1, 2, 3, 4]
 
-=====RDD list=====
+============================RDD list=============================
 [1, 2, 3, 4]
 
-=====Addrdd lambda list=====
+============================Addrdd lambda list=====================
 [3, 4, 5, 6]
 
-=====Mulrdd lambda list=====
+=============================Mulrdd lambda list=====================
 [7, 14, 21, 28]
 
-=====Subrdd lambda list=====
+==============================Subrdd lambda list=====================
 [-4, -3, -2, -1]
 
-=====Divrdd lambda list=====
+==============================Divrdd lambda list=======================
 [0.1, 0.2, 0.3, 0.4]
 
-=====Raw data=====
+=============================Raw data===================================
 ['zeyobron', 'zeyo']
 
-=====RDD data for String=====
+==============================RDD data for String=======================
 ['zeyobron', 'zeyo']
 
-=====Addrdd list for String=====
+=============================Addrdd list for String======================
 ['zeyobronAnalytics', 'zeyoAnalytics']
