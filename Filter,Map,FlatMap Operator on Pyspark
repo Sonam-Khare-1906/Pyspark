@@ -1,0 +1,112 @@
+lis = [1,2,3,4]
+print()
+print("=============================Raw Python list======================")
+print(lis)
+
+########################################convert above list to Rdd using the method for parallelize---it is textfile method---Above list is a raw python data#######################################
+rdd = sc.parallelize(lis)
+print()
+print("============================RDD list=============================")
+print(rdd.collect())
+
+#######################################Filter Operation#######################################
+filrdd = rdd.filter(lambda x : x < 2)
+print()
+print("=============================filrdd list==============================")
+print(filrdd.collect())
+
+filsrdd = rdd.filter(lambda x : x > 2)
+print()
+print("=============================filsrdd list==============================")
+print(filsrdd.collect())
+
+lst  = [   "zeyobron" , "zeyo" , "meta"  ]
+print("==============================RAW=============================")
+print(lst)
+print()
+
+rddlst = sc.parallelize(lst)
+print("==============================rddls==============================")
+print(rddlst.collect())
+print()
+
+conrdd = rddlst.map(lambda x : x + "Analytics")
+print("==============================Concatinate rdd==============================")
+print(conrdd.collect())
+print()
+########################################IN Operator########################################
+filrd = rddlst.filter(lambda x : 'zeyo' in x)
+print("==============================filr==============================")
+print(filrd.collect())
+print()
+
+#######################################Replace operator###################################
+replacerdd= rddlst.map(lambda x : x.replace("zeyo","tera"))
+print("==================relacerdd==============================")
+print(replacerdd.collect())
+print()
+
+replacerd= rddlst.map(lambda x : x.replace("zeyo",""))
+print("===============================relacerdd=============================")
+print(replacerd.collect())
+print()
+
+####################FlatMap Operatort works on individual element in Split################
+fl = ["A~B", "C~D"]
+print("===============================FlatMap raw data===============================")
+print(fl)
+print()
+
+rddfl= sc.parallelize(fl)
+print("==============================FlatMap rdd list==============================")
+print(rddfl.collect())
+print()
+
+flatmp =rddfl.flatMap (lambda x : x.split("~"))
+print("==============================FlatMap list==============================")
+print(flatmp.collect())
+print()
+
+
+
+Output
+=============================Raw Python list======================
+[1, 2, 3, 4]
+
+============================RDD list=============================
+[1, 2, 3, 4]
+
+=============================filrdd list==============================
+[1]
+
+=============================filsrdd list==============================
+[3, 4]
+==============================RAW=============================
+['zeyobron', 'zeyo', 'meta']
+
+==============================rddls==============================
+['zeyobron', 'zeyo', 'meta']
+
+==============================Concatinate rdd==============================
+25/05/17 12:28:12 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+['zeyobronAnalytics', 'zeyoAnalytics', 'metaAnalytics']
+
+==============================filr==============================
+['zeyobron', 'zeyo']
+
+==================relacerdd==============================
+['terabron', 'tera', 'meta']
+
+===============================relacerdd=============================
+['bron', '', 'meta']
+
+===============================FlatMap raw data===============================
+['A~B', 'C~D']
+
+==============================FlatMap rdd list==============================
+['A~B', 'C~D']
+
+==============================FlatMap list==============================
+['A', 'B', 'C', 'D']
+
+
