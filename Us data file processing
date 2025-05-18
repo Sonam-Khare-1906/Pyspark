@@ -1,0 +1,103 @@
+data = sc.textFile("usdata.csv")
+print()
+print("======RAW DATA=====")
+data.foreach(print)
+
+
+
+
+fildata = data.filter( lambda  x   :  len(x) > 200 )
+print()
+print("======fildata=====")
+print()
+fildata.foreach(print)
+
+
+
+
+flatdata = fildata.flatMap( lambda  x : x.split(",") )
+print()
+print("======flatdata=====")
+print()
+flatdata.foreach(print)
+
+
+
+repdata = flatdata.map( lambda x : x.replace("-",""))
+print()
+print("======repdata=====")
+print()
+repdata.foreach(print)
+
+
+
+
+condata = repdata.map(lambda x : x + ",zeyo")
+print()
+print("======condata=====")
+print()
+condata.foreach(print)
+
+
+print("======== DATA WRITTEN========")
+
+
+
+
+
+======fildata=====
+
+Loreta,Timenez,"Kaminski, Katherine Andritsaki",47857 Coney Island Ave,Clinton,Prince Georges,MD,20735,10,301-696-6420,301-392-6698,loreta.timenez@hotmail.com,http://www.kaminskikatherineandritsaki.com
+                                                                                
+======flatdata=====
+
+Loreta
+Timenez
+"Kaminski
+ Katherine Andritsaki"
+47857 Coney Island Ave
+Clinton
+Prince Georges
+MD
+20735
+10
+301-696-6420
+301-392-6698
+loreta.timenez@hotmail.com
+http://www.kaminskikatherineandritsaki.com
+                                                                                
+======repdata=====
+
+Loreta
+Timenez
+"Kaminski
+ Katherine Andritsaki"
+47857 Coney Island Ave
+Clinton
+Prince Georges
+MD
+20735
+10
+3016966420
+3013926698
+loreta.timenez@hotmail.com
+http://www.kaminskikatherineandritsaki.com
+                                                                                
+======condata=====
+
+25/05/18 11:48:59 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+Loreta,zeyo
+Timenez,zeyo
+"Kaminski,zeyo
+ Katherine Andritsaki",zeyo
+47857 Coney Island Ave,zeyo
+Clinton,zeyo
+Prince Georges,zeyo
+MD,zeyo
+20735,zeyo
+10,zeyo
+3016966420,zeyo
+3013926698,zeyo
+loreta.timenez@hotmail.com,zeyo
+http://www.kaminskikatherineandritsaki.com,zeyo
+======== DATA WRITTEN========
