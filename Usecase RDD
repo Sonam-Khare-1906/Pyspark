@@ -1,0 +1,65 @@
+rawlis = [
+            "State->TN~City->Chennai",
+            "State->Kerala~City->Trivandrum"
+]
+
+rddlis = sc.parallelize(rawlis)
+print("==============================rddlis==============================")
+rddlis.foreach(print)
+print()
+
+flatlst = rddlis.flatMap(lambda x : x.split("~"))
+print("==============================FlatMap list==============================")
+flatlst.foreach(print)
+print()
+
+States = flatlst.filter(lambda x : 'State' in x)
+print("==============================States list==============================")
+States.foreach(print)
+print()
+
+Cities = flatlst.filter(lambda x : 'City' in x)
+print("==============================Cities list==============================")
+Cities.foreach(print)
+print()
+
+finalState = States.map(lambda x : x.replace("State->" , ""))
+print("==============================finalState list==============================")
+finalState.foreach(print)
+print()
+
+finalCity = Cities.map(lambda x : x.replace("City->" , ""))
+print("==============================finalCity list==============================")
+finalCity.foreach(print)
+print()
+
+
+
+
+
+==============================rddlis==============================
+State->TN~City->Chennai
+State->Kerala~City->Trivandrum
+                                                                                
+==============================FlatMap list==============================
+State->TN
+City->Chennai
+State->Kerala
+City->Trivandrum
+                                                                                
+==============================States list==============================
+State->TN
+State->Kerala
+                                                                                
+==============================Cities list==============================
+City->Chennai
+City->Trivandrum
+                                                                                
+==============================finalState list==============================
+TN
+Kerala
+                                                                                
+==============================finalCity list==============================
+Chennai
+Trivandrum
+           
