@@ -164,3 +164,483 @@ spark.sql("select a.*,b.product from cust a right join prod b on a.id=b.id").sho
 
 #Having function
 spark.sql("select category,count(category) as cnt from df group by category having count(category)>1").show()
+
+
+
+
+
+##########Outputs##########
++---+----------+------+-------------+--------------+-------+
+| id|     tdate|amount|     category|       product|spendby|
++---+----------+------+-------------+--------------+-------+
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
++---+----------+------+-------------+--------------+-------+
+
++---+----------+------+-----------+-------+-------+
+| id|     tdate|amount|   category|product|spendby|
++---+----------+------+-----------+-------+-------+
+|  4|12-17-2011| 300.0|Team Sports|  Field|   cash|
+|  5|02-14-2011| 200.0| Gymnastics|   NULL|   cash|
+|  6|02-14-2011| 200.0|     Winter|   NULL|   cash|
+|  7|02-14-2011| 200.0|     Winter|   NULL|   cash|
++---+----------+------+-----------+-------+-------+
+
+25/05/24 21:42:21 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
++---+----+
+| id|name|
++---+----+
+|  1| raj|
+|  2|ravi|
+|  3| sai|
+|  5|rani|
++---+----+
+
++---+-------+
+| id|product|
++---+-------+
+|  1|  mouse|
+|  3| mobile|
+|  7| laptop|
++---+-------+
+
++----------+-------------+--------------+
+|     tdate|     category|       product|
++----------+-------------+--------------+
+|06-26-2011|     Exercise| GymnasticsPro|
+|05-26-2011|Exercise Band| Weightlifting|
+|06-01-2011|     Exercise|Gymnastics Pro|
+|06-05-2011|   Gymnastics|         Rings|
+|12-17-2011|  Team Sports|         Field|
+|02-14-2011|   Gymnastics|          NULL|
+|06-05-2011|     Exercise|         Rings|
+|12-17-2011|  Team Sports|         Field|
+|02-14-2011|   Gymnastics|          NULL|
++----------+-------------+--------------+
+
++--------+---+
+|category| id|
++--------+---+
+|Exercise|  0|
+|Exercise|  2|
+|Exercise|  6|
++--------+---+
+
++---+----------+--------+
+| id|     tdate| spendby|
++---+----------+--------+
+|  0|06-26-2011|Exercise|
+|  2|06-01-2011|Exercise|
++---+----------+--------+
+
++---+----------+
+| id|  category|
++---+----------+
+|  0|  Exercise|
+|  2|  Exercise|
+|  3|Gymnastics|
+|  5|Gymnastics|
+|  6|  Exercise|
+|  8|Gymnastics|
++---+----------+
+
++---+----------+------+--------+--------------+-------+
+| id|     tdate|amount|category|       product|spendby|
++---+----------+------+--------+--------------+-------+
+|  0|06-26-2011| 300.4|Exercise| GymnasticsPro|   cash|
+|  2|06-01-2011| 300.4|Exercise|Gymnastics Pro|   cash|
++---+----------+------+--------+--------------+-------+
+
++---+----------+------+-------------+-------------+-------+
+| id|     tdate|amount|     category|      product|spendby|
++---+----------+------+-------------+-------------+-------+
+|  1|05-26-2011| 200.0|Exercise Band|Weightlifting| credit|
+|  3|06-05-2011| 100.0|   Gymnastics|        Rings| credit|
+|  4|12-17-2011| 300.0|  Team Sports|        Field|   cash|
+|  5|02-14-2011| 200.0|   Gymnastics|         NULL|   cash|
+|  7|12-17-2011| 300.0|  Team Sports|        Field|   cash|
+|  8|02-14-2011| 200.0|   Gymnastics|         NULL|   cash|
++---+----------+------+-------------+-------------+-------+
+
++---+----------+------+-------------+-------------+-------+
+| id|     tdate|amount|     category|      product|spendby|
++---+----------+------+-------------+-------------+-------+
+|  1|05-26-2011| 200.0|Exercise Band|Weightlifting| credit|
+|  4|12-17-2011| 300.0|  Team Sports|        Field|   cash|
+|  7|12-17-2011| 300.0|  Team Sports|        Field|   cash|
++---+----------+------+-------------+-------------+-------+
+
++---+----------+------+----------+-------+-------+
+| id|     tdate|amount|  category|product|spendby|
++---+----------+------+----------+-------+-------+
+|  5|02-14-2011| 200.0|Gymnastics|   NULL|   cash|
+|  8|02-14-2011| 200.0|Gymnastics|   NULL|   cash|
++---+----------+------+----------+-------+-------+
+
++---+----------+------+-------------+--------------+-------+
+| id|     tdate|amount|     category|       product|spendby|
++---+----------+------+-------------+--------------+-------+
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
++---+----------+------+-------------+--------------+-------+
+
++-------+
+|Maximum|
++-------+
+|      8|
++-------+
+
++-------+
+|Minimum|
++-------+
+|      0|
++-------+
+
++---+----------+------+-------------+--------------+-------+------+
+| id|     tdate|amount|     category|       product|spendby|status|
++---+----------+------+-------------+--------------+-------+------+
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|     1|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|     0|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|     1|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|     0|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|     1|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|     1|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|     0|
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|     1|
+|  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|     1|
++---+----------+------+-------------+--------------+-------+------+
+
++---+----------+------+-------------+--------------+-------+------+
+| id|     tdate|amount|     category|       product|spendby|status|
++---+----------+------+-------------+--------------+-------+------+
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|     1|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|     0|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|     1|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|     0|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|     1|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|     1|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|     0|
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|     1|
+|  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|     1|
++---+----------+------+-------------+--------------+-------+------+
+
++---+-------------+---------------+
+| id|     category|        Concate|
++---+-------------+---------------+
+|  0|     Exercise|     0-Exercise|
+|  1|Exercise Band|1-Exercise Band|
+|  2|     Exercise|     2-Exercise|
+|  3|   Gymnastics|   3-Gymnastics|
+|  4|  Team Sports|  4-Team Sports|
+|  5|   Gymnastics|   5-Gymnastics|
+|  6|     Exercise|     6-Exercise|
+|  7|  Team Sports|  7-Team Sports|
+|  8|   Gymnastics|   8-Gymnastics|
++---+-------------+---------------+
+
++---+-------------+--------------+--------------------+
+| id|     category|       product|             Concate|
++---+-------------+--------------+--------------------+
+|  0|     Exercise| GymnasticsPro|0-Exercise-Gymnas...|
+|  1|Exercise Band| Weightlifting|1-Exercise Band-W...|
+|  2|     Exercise|Gymnastics Pro|2-Exercise-Gymnas...|
+|  3|   Gymnastics|         Rings|  3-Gymnastics-Rings|
+|  4|  Team Sports|         Field| 4-Team Sports-Field|
+|  5|   Gymnastics|          NULL|        5-Gymnastics|
+|  6|     Exercise|         Rings|    6-Exercise-Rings|
+|  7|  Team Sports|         Field| 7-Team Sports-Field|
+|  8|   Gymnastics|          NULL|        8-Gymnastics|
++---+-------------+--------------+--------------------+
+
++---+-------------+-------------+
+| id|     category|        Lower|
++---+-------------+-------------+
+|  0|     Exercise|     exercise|
+|  1|Exercise Band|exercise band|
+|  2|     Exercise|     exercise|
+|  3|   Gymnastics|   gymnastics|
+|  4|  Team Sports|  team sports|
+|  5|   Gymnastics|   gymnastics|
+|  6|     Exercise|     exercise|
+|  7|  Team Sports|  team sports|
+|  8|   Gymnastics|   gymnastics|
++---+-------------+-------------+
+
++---+-------------+-------------+
+| id|     category|        Upper|
++---+-------------+-------------+
+|  0|     Exercise|     EXERCISE|
+|  1|Exercise Band|EXERCISE BAND|
+|  2|     Exercise|     EXERCISE|
+|  3|   Gymnastics|   GYMNASTICS|
+|  4|  Team Sports|  TEAM SPORTS|
+|  5|   Gymnastics|   GYMNASTICS|
+|  6|     Exercise|     EXERCISE|
+|  7|  Team Sports|  TEAM SPORTS|
+|  8|   Gymnastics|   GYMNASTICS|
++---+-------------+-------------+
+
++-------------+------+----+
+|     category|amount|Ceil|
++-------------+------+----+
+|     Exercise| 300.4| 301|
+|Exercise Band| 200.0| 200|
+|     Exercise| 300.4| 301|
+|   Gymnastics| 100.0| 100|
+|  Team Sports| 300.0| 300|
+|   Gymnastics| 200.0| 200|
+|     Exercise| 100.0| 100|
+|  Team Sports| 300.0| 300|
+|   Gymnastics| 200.0| 200|
++-------------+------+----+
+
++-------------+------+-----+
+|     category|amount|Round|
++-------------+------+-----+
+|     Exercise| 300.4|300.0|
+|Exercise Band| 200.0|200.0|
+|     Exercise| 300.4|300.0|
+|   Gymnastics| 100.0|100.0|
+|  Team Sports| 300.0|300.0|
+|   Gymnastics| 200.0|200.0|
+|     Exercise| 100.0|100.0|
+|  Team Sports| 300.0|300.0|
+|   Gymnastics| 200.0|200.0|
++-------------+------+-----+
+
++--------------+--------------+
+|       product|          Trim|
++--------------+--------------+
+| GymnasticsPro| GymnasticsPro|
+| Weightlifting| Weightlifting|
+|Gymnastics Pro|Gymnastics Pro|
+|         Rings|         Rings|
+|         Field|         Field|
+|          NULL|          NULL|
+|         Rings|         Rings|
+|         Field|         Field|
+|          NULL|          NULL|
++--------------+--------------+
+
++-------------+--------------+--------------+
+|     category|       product|   ReplaceNull|
++-------------+--------------+--------------+
+|     Exercise| GymnasticsPro| GymnasticsPro|
+|Exercise Band| Weightlifting| Weightlifting|
+|     Exercise|Gymnastics Pro|Gymnastics Pro|
+|   Gymnastics|         Rings|         Rings|
+|  Team Sports|         Field|         Field|
+|   Gymnastics|          NULL|            NA|
+|     Exercise|         Rings|         Rings|
+|  Team Sports|         Field|         Field|
+|   Gymnastics|          NULL|            NA|
++-------------+--------------+--------------+
+
++-------------+--------+
+|     category|Distinct|
++-------------+--------+
+|   Gymnastics|    cash|
+|     Exercise|    cash|
+|     Exercise|  credit|
+|  Team Sports|    cash|
+|Exercise Band|  credit|
+|   Gymnastics|  credit|
++-------------+--------+
+
++---+----------+------+-------------+--------------+-------+
+| id|     tdate|amount|     category|       product|spendby|
++---+----------+------+-------------+--------------+-------+
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  6|02-14-2011| 200.0|       Winter|          NULL|   cash|
+|  7|02-14-2011| 200.0|       Winter|          NULL|   cash|
++---+----------+------+-------------+--------------+-------+
+
++---+----------+------+-------------+--------------+-------+
+| id|     tdate|amount|     category|       product|spendby|
++---+----------+------+-------------+--------------+-------+
+|  7|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  0|06-26-2011| 300.4|     Exercise| GymnasticsPro|   cash|
+|  6|06-05-2011| 100.0|     Exercise|         Rings| credit|
+|  3|06-05-2011| 100.0|   Gymnastics|         Rings| credit|
+|  2|06-01-2011| 300.4|     Exercise|Gymnastics Pro|   cash|
+|  4|12-17-2011| 300.0|  Team Sports|         Field|   cash|
+|  1|05-26-2011| 200.0|Exercise Band| Weightlifting| credit|
+|  8|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  5|02-14-2011| 200.0|   Gymnastics|          NULL|   cash|
+|  6|02-14-2011| 200.0|       Winter|          NULL|   cash|
+|  7|02-14-2011| 200.0|       Winter|          NULL|   cash|
++---+----------+------+-------------+--------------+-------+
+
++-------------+-----+
+|     category|  Sum|
++-------------+-----+
+|   Gymnastics|500.0|
+|  Team Sports|600.0|
+|     Exercise|700.8|
+|Exercise Band|200.0|
++-------------+-----+
+
++-------------+-------+-----+
+|     category|spendby|Count|
++-------------+-------+-----+
+|   Gymnastics|   cash|    2|
+|     Exercise|   cash|    2|
+|     Exercise| credit|    1|
+|  Team Sports|   cash|    2|
+|Exercise Band| credit|    1|
+|   Gymnastics| credit|    1|
++-------------+-------+-----+
+
++-------------+-------+
+|     category|Maximum|
++-------------+-------+
+|   Gymnastics|  200.0|
+|  Team Sports|  300.0|
+|     Exercise|  300.4|
+|Exercise Band|  200.0|
++-------------+-------+
+
++-------------+-------+
+|     category|Minimum|
++-------------+-------+
+|   Gymnastics|  100.0|
+|  Team Sports|  300.0|
+|     Exercise|  100.0|
+|Exercise Band|  200.0|
++-------------+-------+
+
++-------------+-----+
+|     category|Order|
++-------------+-----+
+|  Team Sports|300.0|
+|   Gymnastics|200.0|
+|Exercise Band|200.0|
+|     Exercise|300.4|
++-------------+-----+
+
++-------------+------+----------+
+|     category|amount|Row_Number|
++-------------+------+----------+
+|     Exercise| 300.4|         1|
+|     Exercise| 300.4|         2|
+|     Exercise| 100.0|         3|
+|Exercise Band| 200.0|         1|
+|   Gymnastics| 200.0|         1|
+|   Gymnastics| 200.0|         2|
+|   Gymnastics| 100.0|         3|
+|  Team Sports| 300.0|         1|
+|  Team Sports| 300.0|         2|
++-------------+------+----------+
+
++-------------+------+----------+
+|     category|amount|Dense_Rank|
++-------------+------+----------+
+|     Exercise| 300.4|         1|
+|     Exercise| 300.4|         1|
+|     Exercise| 100.0|         2|
+|Exercise Band| 200.0|         1|
+|   Gymnastics| 200.0|         1|
+|   Gymnastics| 200.0|         1|
+|   Gymnastics| 100.0|         2|
+|  Team Sports| 300.0|         1|
+|  Team Sports| 300.0|         1|
++-------------+------+----------+
+
++-------------+------+----+
+|     category|amount|Rank|
++-------------+------+----+
+|     Exercise| 300.4|   1|
+|     Exercise| 300.4|   1|
+|     Exercise| 100.0|   3|
+|Exercise Band| 200.0|   1|
+|   Gymnastics| 200.0|   1|
+|   Gymnastics| 200.0|   1|
+|   Gymnastics| 100.0|   3|
+|  Team Sports| 300.0|   1|
+|  Team Sports| 300.0|   1|
++-------------+------+----+
+
++-------------+------+-----+
+|     category|amount| lead|
++-------------+------+-----+
+|     Exercise| 300.4|300.4|
+|     Exercise| 300.4|100.0|
+|     Exercise| 100.0| NULL|
+|Exercise Band| 200.0| NULL|
+|   Gymnastics| 200.0|200.0|
+|   Gymnastics| 200.0|100.0|
+|   Gymnastics| 100.0| NULL|
+|  Team Sports| 300.0|300.0|
+|  Team Sports| 300.0| NULL|
++-------------+------+-----+
+
++-------------+------+-----+
+|     category|amount|  lag|
++-------------+------+-----+
+|     Exercise| 300.4| NULL|
+|     Exercise| 300.4|300.4|
+|     Exercise| 100.0|300.4|
+|Exercise Band| 200.0| NULL|
+|   Gymnastics| 200.0| NULL|
+|   Gymnastics| 200.0|200.0|
+|   Gymnastics| 100.0|200.0|
+|  Team Sports| 300.0| NULL|
+|  Team Sports| 300.0|300.0|
++-------------+------+-----+
+
++---+----+-------+
+| id|name|product|
++---+----+-------+
+|  1| raj|  mouse|
+|  3| sai| mobile|
++---+----+-------+
+
++---+----+-------+
+| id|name|product|
++---+----+-------+
+|  5|rani|   NULL|
+|  1| raj|  mouse|
+|  3| sai| mobile|
+|  2|ravi|   NULL|
++---+----+-------+
+
++----+----+-------+
+|  id|name|product|
++----+----+-------+
+|NULL|NULL| laptop|
+|   1| raj|  mouse|
+|   3| sai| mobile|
++----+----+-------+
+
++-----------+---+
+|   category|cnt|
++-----------+---+
+| Gymnastics|  3|
+|Team Sports|  2|
+|   Exercise|  3|
++-----------+---+
+
+
+Process finished with exit code 0
