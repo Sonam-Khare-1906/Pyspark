@@ -1,0 +1,65 @@
+##################Raw Data##################
+data = sc.textFile("dt.txt")
+print()
+print("=============Raw data=============")
+print()
+data.foreach(print)
+
+##################MapSplit Data##################
+mapsplit=data.map(lambda x : x.split(","))
+print()
+print("=============mapSplit data=============")
+print()
+mapsplit.foreach(print)
+
+##################Define column names##################
+from collections import namedtuple
+columns = namedtuple('columns',['id','tdate','amt','category','product','mode'])
+
+##################impose column names to split data##################
+schemardd= mapsplit.map(lambda x : columns (x[0],x[1],x[2],x[3],x[4],x[5]))
+
+##################column filter##################
+colfilter=schemardd.filter(lambda x : 'Gymnastics' in x.product)
+print()
+print("=============colfilter data=============")
+print()
+colfilter.foreach(print)
+
+################## rdd to convert dataframes ##################
+df= colfilter.toDF()
+df.show()
+
+
+
+
+
+=============Raw data=============
+
+00000000,06-26-2011,200,Exercise,GymnasticsPro,cash
+00000001,05-26-2011,300,Exercise,Weightlifting,credit
+00000002,06-01-2011,100,Exercise,GymnasticsPro,cash
+00000003,06-05-2011,100,Gymnastics,Rings,credit
+00000004,12-17-2011,300,Team Sports,Field,paytm
+00000005,02-14-2011,200,Gymnastics,,cash
+
+=============mapSplit data=============
+
+['00000000', '06-26-2011', '200', 'Exercise', 'GymnasticsPro', 'cash']
+['00000001', '05-26-2011', '300', 'Exercise', 'Weightlifting', 'credit']
+['00000002', '06-01-2011', '100', 'Exercise', 'GymnasticsPro', 'cash']
+['00000003', '06-05-2011', '100', 'Gymnastics', 'Rings', 'credit']
+['00000004', '12-17-2011', '300', 'Team Sports', 'Field', 'paytm']
+['00000005', '02-14-2011', '200', 'Gymnastics', '', 'cash']
+                                                                                
+=============colfilter data=============
+
+columns(id='00000000', tdate='06-26-2011', amt='200', category='Exercise', product='GymnasticsPro', mode='cash')
+columns(id='00000002', tdate='06-01-2011', amt='100', category='Exercise', product='GymnasticsPro', mode='cash')
+25/05/24 11:09:22 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
++--------+----------+---+--------+-------------+----+
+|      id|     tdate|amt|category|      product|mode|
++--------+----------+---+--------+-------------+----+
+|00000000|06-26-2011|200|Exercise|GymnasticsPro|cash|
+|00000002|06-01-2011|100|Exercise|GymnasticsPro|cash|
++--------+----------+---+--------+-------------+----+
