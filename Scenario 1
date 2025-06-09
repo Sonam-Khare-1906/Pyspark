@@ -1,0 +1,68 @@
+data = [
+    ('A', 'D', 'D'),
+    ('B', 'A', 'A'),
+    ('A', 'D', 'A')
+]
+
+df = spark.createDataFrame(data).toDF("TeamA", "TeamB", "Won")
+
+df.show()
+
+
+teamA= df.withColumn("TeamName", expr("case when TeamA = Won then 1 else 0 end")).drop("TeamB")
+teamA.show()
+
+teamB=df.withColumn("TeamName1", expr("case when TeamB = Won then 1 else 0 end")).drop("TeamA")
+teamB.show()
+
+teams = teamA.union(teamB)
+teams.show()
+
+Finaldf=teams.groupBy("TeamA").agg(sum("TeamName").alias("Won")).orderBy("TeamA").withColumnRenamed("TeamA","TeamName")
+Finaldf.show()
+
+
+
+output
++-----+-----+---+
+|TeamA|TeamB|Won|
++-----+-----+---+
+|    A|    D|  D|
+|    B|    A|  A|
+|    A|    D|  A|
++-----+-----+---+
+
++-----+---+--------+
+|TeamA|Won|TeamName|
++-----+---+--------+
+|    A|  D|       0|
+|    B|  A|       0|
+|    A|  A|       1|
++-----+---+--------+
+
++-----+---+---------+
+|TeamB|Won|TeamName1|
++-----+---+---------+
+|    D|  D|        1|
+|    A|  A|        1|
+|    D|  A|        0|
++-----+---+---------+
+
++-----+---+--------+
+|TeamA|Won|TeamName|
++-----+---+--------+
+|    A|  D|       0|
+|    B|  A|       0|
+|    A|  A|       1|
+|    D|  D|       1|
+|    A|  A|       1|
+|    D|  A|       0|
++-----+---+--------+
+
++--------+---+
+|TeamName|Won|
++--------+---+
+|       A|  2|
+|       B|  0|
+|       D|  1|
++--------+---+
