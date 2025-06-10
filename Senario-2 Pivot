@@ -1,0 +1,40 @@
+A  column values become a column name---Pivot
+
+
+
+data = [
+    (101, "Eng", 90),
+    (101, "Sci", 80),
+    (101, "Mat", 95),
+    (102, "Eng", 75),
+    (102, "Sci", 85),
+    (102, "Mat", 90)
+]
+columns = ["Id", "Subject", "Marks"]
+rdd = spark.sparkContext.parallelize(data)
+df = rdd.toDF(columns)
+df.show()
+
+pivotdf=df.groupBy("Id").pivot("Subject").agg(first("Marks"))
+pivotdf.show()
+
+
+
+output
++---+-------+-----+
+| Id|Subject|Marks|
++---+-------+-----+
+|101|    Eng|   90|
+|101|    Sci|   80|
+|101|    Mat|   95|
+|102|    Eng|   75|
+|102|    Sci|   85|
+|102|    Mat|   90|
++---+-------+-----+
+
++---+---+---+---+
+| Id|Eng|Mat|Sci|
++---+---+---+---+
+|101| 90| 95| 80|
+|102| 75| 90| 85|
++---+---+---+---+
